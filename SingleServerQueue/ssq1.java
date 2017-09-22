@@ -97,11 +97,11 @@ class ssq1 {
     public static void printResults(Ssq1sum sum) {
         DecimalFormat f = new DecimalFormat("###0.00");
 
-        System.out.println("Jobs Processed				: " + sum.no_jobs + " jobs" );
-        System.out.println("Average Interarrival Time	: " + f.format(sum.avgInterarrival()) + " seconds");
-        System.out.println("Average Service Time		: " + f.format(sum.avgServicetime()) + " seconds");
-        System.out.println("Average Delay				: " + f.format(sum.avgDelay()) + " seconds");
-        System.out.println("Average Wait Time			: " + f.format(sum.avgWait()) + " seconds");
+        System.out.println("Jobs Processed                  : " + sum.no_jobs + " jobs" );
+        System.out.println("Average Interarrival Time       : " + f.format(sum.avgInterarrival()) + " seconds");
+        System.out.println("Average Service Time            : " + f.format(sum.avgServicetime()) + " seconds");
+        System.out.println("Average Delay                   : " + f.format(sum.avgDelay()) + " seconds");
+        System.out.println("Average Wait Time               : " + f.format(sum.avgWait()) + " seconds");
     }
 
     public static void main (String[] args) {
