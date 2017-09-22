@@ -1,19 +1,22 @@
-//	        Name : Eric Kwon
-//		    Single Server Queue Simulation
-//		    Objective : Run 1M instance of job arrivals & departures
+//          Name : Eric Kwon
+//          Single Server Queue Simulation
+//          Objective : Run 1M instance of job arrivals & departures
 //          Arrivals and service times are on equi-likely basis
 
 import java.util.*;
 import java.text.*;
 
 class Ssq1sum {
-    double arrival;									// Arrival time
-    double delay;									// Delay time
-    double wait;									// Wait time
-    double service;									// Service times
-    int no_jobs;									// # of jobs processed
 
-    void initSumParas() {							// Initializer
+    // Class member variables that will retain the valeus for statistics
+    double arrival;									
+    double delay;		
+    double wait;									
+    double service;								
+    int no_jobs;									
+
+    // Method to initialize the variables
+    void initSumParas() {			
         arrival = 0.0;
         delay = 0.0;
         wait = 0.0;
@@ -21,50 +24,60 @@ class Ssq1sum {
         no_jobs = 0;
     }
 
-    double avgInterarrival() { return arrival / no_jobs; }		// Return average interarrival times
-    double avgServicetime() { return service / no_jobs; }		// Return average service time
-    double avgDelay() { return delay / no_jobs; }				// Return average delay time
-    double avgWait() { return wait / no_jobs; }					// Return average wait time
+    // Methods to return the averages of the collected values
+    double avgInterarrival() { return arrival / no_jobs; }		
+    double avgServicetime() { return service / no_jobs; }		
+    double avgDelay() { return delay / no_jobs; }				
+    double avgWait() { return wait / no_jobs; }					
 }
 
 class ssq1 {
-    public static double getInterarrival () {		// "Equilikely" Distribution for Interarrival Times
+
+    // Equi-likely distribution of inter-arrival times
+    // Random will generate double values from 0 to 1
+    public static double getInterarrival () {
         Random r = new Random();
         double randR = r.nextInt(10);
-        if (randR < 1)								// 10% chance for 30 second interarrival time
+        if (randR < 1)								
             return 30.0;
-        else if (randR < 4)							// 30% chance for 10 second interarrival time
+        else if (randR < 4)							
             return 10.0;
-        else										// 60% chance for 20 second interarrival time
+        else					
             return 20.0;
     }
 
-    public static double getService () {			// "Equilikely? Distribution for Service Times
+    // Equi-likely distribution of service times
+    // Random will generate double values from 0 to 1
+    public static double getService () {			
         Random r = new Random();
         double randR = r.nextInt(10);
-        if (randR < 1)								// 10% chance for 20 second service time
+        if (randR < 1)								
             return 20.0;
-        else if (randR < 4)							// 30% chance for 8 second service time
+        else if (randR < 4)							
             return 8.0;
-        else										// 60% chance for 15 second service time
+        else										
             return 15.0;
     }
 
+    // Method to run the actual test
     public static Ssq1sum runTests() {
         Ssq1sum sum = new Ssq1sum();
-        sum.initSumParas();							// Initialize the class members
-        double serviceTime;							// Service time placeholder
-        double interarrivalTime;					// Interarrival time placeholder
-        double departureTime = 0;					// Departure time placeholder
-        double delay;								// Delay time placeholder
-        double wait;								// Wait time placeholder
+        sum.initSumParas();							
+        double serviceTime;							
+        double interarrivalTime;					
+        double departureTime = 0;					
+        double delay;								
+        double wait;								
         sum.no_jobs = 1;
 
-        sum.service += getService();				// Initial service time for first customer
-        departureTime += sum.service;				// Initial departure time for first customer
+    // Track the additions of the service times and the departures
+        sum.service += getService();				
+        departureTime += sum.service;				
 
+    // Iteration to simulate arrivals based on randomly generated inter-arrival times
+    // To be run for 1M instances
         for (int i=2 ; i <= 1000000 ; i++){
-            interarrivalTime = getInterarrival();	// Get arrival
+            interarrivalTime = getInterarrival();
             sum.arrival += interarrivalTime;
             if (sum.arrival < departureTime)
                 delay = departureTime - sum.arrival;
@@ -78,7 +91,6 @@ class ssq1 {
             sum.service += serviceTime;
             sum.no_jobs = i;
         }
-
         return sum;
     }
 

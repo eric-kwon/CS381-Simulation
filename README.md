@@ -4,5 +4,5 @@
 
 | Project Name | Link | 
 |:------------:|:----:|
-|||
+|Single Server Queue Simulation|[Link](./SingleServerQueue/)|
 |Monte Carlo Simulation - Poker Hands|[Link](./MonteCarloSimPoker/)|
