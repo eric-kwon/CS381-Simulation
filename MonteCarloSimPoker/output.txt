@@ -1,0 +1,5 @@
+Total # of Hands Dealt       : 1000000.00
+Total # of Two Pairs         : 47254.00
+Total # of Four of a Kind    : 242.00
+Percentage of Two Pairs      : 4.7254000%
+Percentage of Four of a Kind : 0.0242000%
