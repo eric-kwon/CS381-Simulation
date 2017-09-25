@@ -6,6 +6,7 @@
 //          Associated file : cards.java
 
 import java.util.*;
+import java.io.*;
 import java.text.DecimalFormat;
 
 public class monteCarlo {
@@ -91,12 +92,42 @@ public class monteCarlo {
         fok_average = fok_total / dealt_total;
     }
 
-    public static void printResults() {
-        DecimalFormat f = new DecimalFormat("###0.0000000");
-        System.out.println ("Total # of Two Pairs         : " + f.format(tp_total));
-        System.out.println ("Total # of Four of a Kind    : " + f.format(fok_total));
-        System.out.println ("Percentage of Two Pairs      : " + f.format(tp_average * 100) + "%");
-        System.out.println ("Percentage of Four of a Kind : " + f.format(fok_average * 100) + "%");
+    public static void outputResults() {
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+
+        try {
+            fw = new FileWriter ("output.txt");
+            bw = new BufferedWriter (fw);
+
+            DecimalFormat f = new DecimalFormat("###0.0000000%");
+            DecimalFormat f2 = new DecimalFormat("###0.00");
+            bw.write ("Total # of Hands Dealt       : " + f2.format(dealt_total));
+            bw.newLine();
+            bw.write ("Total # of Two Pairs         : " + f2.format(tp_total));
+            bw.newLine();
+            bw.write ("Total # of Four of a Kind    : " + f2.format(fok_total));
+            bw.newLine();
+            bw.write ("Percentage of Two Pairs      : " + f.format(tp_average));
+            bw.newLine();
+            bw.write ("Percentage of Four of a Kind : " + f.format(fok_average));
+        }
+
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        finally {
+            try {
+                if (bw != null)
+                    bw.close();
+                if (fw != null)
+                    fw.close();
+            }
+            catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 
 
@@ -116,7 +147,7 @@ public class monteCarlo {
                     tp_total++;
             }
             getAverage();
-            printResults();
+            outputResults();
         }
     }
 
