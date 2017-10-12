@@ -6,3 +6,4 @@
 |:------------:|:----:|
 |Single Server Queue Simulation|[Link](./SingleServerQueue/)|
 |Monte Carlo Simulation - Poker Hands|[Link](./MonteCarloSimPoker/)|
+|Monte Carlo Approximation of Pi|[Link](./MonteCarloPi/)|
