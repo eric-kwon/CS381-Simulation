@@ -1,4 +1,4 @@
-# CS381-Simulation and Probability
+# CS381-Simulation and Modeling
 
 ## Assignments List
 
